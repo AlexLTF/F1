@@ -46,12 +46,15 @@ function fetchData(num) {
     const headshotElement = document.createElement('img');
     headshotElement.src = driver.headshot_url;
     headshotElement.alt = `${driver.full_name} headshot`;
-    headshotElement.style.width = '9%'; // Optional: Adjust the width of the image
+    headshotElement.style.width = '9%'; 
   
 
     // Clear the data container and add the new h1 element
     const container = document.getElementById('data-container');
-    container.innerHTML = ''; // Clear any existing content
+
+    // Clear any existing content
+    container.innerHTML = ''; 
+
     container.appendChild(fullNameElement);
     container.appendChild(driverNumberElement);
     container.appendChild(countryCodeElement);

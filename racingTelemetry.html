@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing Telemetry</title>
+
+    <link rel="stylesheet" href="f1.css">
+    <script src="f1.js" defer></script>
+</head>
+
+<body>
+    
+
+<div class="navbar">
+
+    <nav>
+        <ul>
+        <li><a href="f1main.html">Home</a></li>
+        <li><a href="driverInfo.html">Driver Info</a></li>
+        <li><a href="#+racingTelemetry.html">Racing Telemetry</a></li>
+        <li><a href="#">Others</a></li>
+        </ul>
+    </nav>
+</div>
+    
+    
+<div class="mainBanner">
+
+<br><img src="images/f1logo.png" 
+class="projectLogo" width="20%" height="20%" alt="f1 image">
+
+</div> 
+
+
+<div class="racingTelemetryHeader">
+  
+    <h1>Racing Telemetry</h1>
+    <h2>Enter the racing number of a driver currently on the grid to get his live racing telemetry:</h2>
+    
+</div>
+    
+    <input type="text" id="number" placeholder="Enter racing number"> 
+    <button id="fetchButton">Get data</button><br> 
+    <div id="data-container"></div>
+
+
+</body>
+</html>

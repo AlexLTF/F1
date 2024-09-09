@@ -64,12 +64,16 @@ body {
  
 }
 
-#data-container {
+#data-container1 {
   padding: 2%;
  
 }
 
 .racingTelemetryHeader h2{
+  padding: 2%;
+}
+
+.racingTelemetryInput {
   padding: 2%;
 }
 
@@ -82,3 +86,7 @@ body {
   padding-left: 2%;
 }
 
+#data-container3 {
+  padding: 2%;
+ 
+}

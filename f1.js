@@ -283,4 +283,76 @@ function fetchCountryData(Country) {
 
 }
 
+
+// Stint section
+
+const fetchButton4 = document.getElementById('fetchButton4');
+if (fetchButton4) {
+  fetchButton4.addEventListener('click', saveStintInput);
+}
+
+
+function saveStintInput() {
+
+  const Stint = document.getElementById('stint').value;
+
+  console.log('User entered country:', Stint)
+
+  fetchStintData(Stint);
+
+}
+
+function fetchStintData(Stint) {
+  const url = `https://api.openf1.org/v1/stints?session_key=latest&driver_number=${Stint}`;
+  console.log('Fetching data from:', url); // Log the URL being called
+
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('Network response was not ok');
+      }
+      return response.json(); // if ok
+    })
+
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+
+      if (data.length === 0) { // Handle empty data
+        console.error('No circuit information found for the stint:', Stint);
+        document.getElementById('data-container4').innerHTML = 'No circuit information found.';
+        return;
+      }
+
+    // Clear the data container
+    const container4 = document.getElementById('data-container4');
+    container4.innerHTML = ''; // Clear any existing content
+
+    // Loop through the array and display each stint
+    data.forEach(stint => {
+      // Create elements for each stint's data
+      const stintElement = document.createElement('div');
+      stintElement.innerHTML = `
+        <h1>Stint number: ${stint.stint_number}</h1>
+        <h1>Driver number: ${stint.driver_number}</h1>
+        <h3>Stint started on lap: ${stint.lap_start}</h3>
+        <h3>Stint ended on lap: ${stint.lap_end}</h3>
+        <h3>Tire compound: ${stint.compound}</h3>
+        <h3>Tire age at start of stint: ${stint.tyre_age_at_start}</h3>
+        <hr> <!-- Add a horizontal line between stints -->
+      `;
+
+      // Append each stint's data to the container
+      container4.appendChild(stintElement);
+    });
+     
+    })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container4').innerHTML = 'An error occurred while fetching data.';
+  });
+
+}
+
 });

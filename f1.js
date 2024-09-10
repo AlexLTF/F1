@@ -215,7 +215,7 @@ function saveCountryInput() {
 }
 
 function fetchCountryData(Country) {
-  const url = `https://api.openf1.org/v1/meetings?year=2023&country_name=${Country}`;
+  const url = `https://api.openf1.org/v1/meetings?year=2024&country_name=${Country}`;
   console.log('Fetching data from:', url); // Log the URL being called
 
 

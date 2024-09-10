@@ -331,11 +331,11 @@ function fetchStintData(Stint) {
 
     // Loop through the array and display each stint
     data.forEach(stint => {
+
       // Create elements for each stint's data
       const stintElement = document.createElement('div');
       stintElement.innerHTML = `
         <h1>Stint number: ${stint.stint_number}</h1>
-        <h1>Driver number: ${stint.driver_number}</h1>
         <h3>Stint started on lap: ${stint.lap_start}</h3>
         <h3>Stint ended on lap: ${stint.lap_end}</h3>
         <h3>Tire compound: ${stint.compound}</h3>

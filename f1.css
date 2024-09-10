@@ -130,3 +130,19 @@ body {
  margin-left: 2%;
 }
 
+.stintHeader h2{
+  margin-left: 2%;
+}
+
+.stintInput{
+  margin-left: 2%;
+}
+
+.stintHeader h1 {
+  background-color:rgb(232, 4, 4);
+  color: white;
+  margin-top: 2%;
+  margin-left: 0;
+  padding: 0.6%;
+  padding-left: 2%;
+}

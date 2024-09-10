@@ -10,7 +10,7 @@ const fetchButton = document.getElementById('fetchButton');
 
 function saveDriverInput() {
 
-  const num = document.getElementById('number').value;
+  const num = document.getElementById('name').value;
 
   console.log('User entered number:', num)
 
@@ -19,7 +19,7 @@ function saveDriverInput() {
 }
 
 function fetchDriverData(num) {
-  const url = `https://api.openf1.org/v1/drivers?driver_number=${num}&session_key=latest`;
+  const url = `https://api.openf1.org/v1/drivers?last_name=${num}&session_key=9158`;
 
   fetch(url)
     .then(response => {

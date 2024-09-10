@@ -1,12 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+
 // Driver info section
 
 const fetchButton = document.getElementById('fetchButton');
   if (fetchButton) {
     fetchButton.addEventListener('click', saveDriverInput);
   }
-
 
 function saveDriverInput() {
 
@@ -17,7 +17,6 @@ function saveDriverInput() {
   fetchDriverData(num);
 
 }
-
 
 function fetchDriverData(num) {
   const url = `https://api.openf1.org/v1/drivers?driver_number=${num}&session_key=latest`;
@@ -74,6 +73,127 @@ function fetchDriverData(num) {
   });
 
 }
+
+// Racing telemetry section
+
+const fetchButton2 = document.getElementById('fetchButton2');
+if (fetchButton2) {
+  fetchButton2.addEventListener('click', saveRacingInput);
+}
+
+
+function saveRacingInput() {
+
+  const telemetry = document.getElementById('telemetryNumber').value;
+  console.log('User entered telemetry:', telemetry)
+
+  const lapNumber = document.getElementById('lap').value;
+  console.log('User entered lap:', lapNumber)
+
+  fetchRacingData(telemetry, lapNumber);
+
+}
+
+function fetchRacingData(telemetry, lapNumber) {
+  const url = `https://api.openf1.org/v1/laps?session_key=latest&driver_number=${telemetry}&lap_number=${lapNumber}`;
+  console.log('Fetching data from:', url); // Log the URL being called
+
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('Network response was not ok');
+      }
+      return response.json(); // if ok
+    })
+
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+
+      if (data.length === 0) { // Handle empty data
+        console.error('No info found:', telemetry, laptime);
+        document.getElementById('data-container2').innerHTML = 'No circuit information found.';
+        return;
+      }
+      const race = data[0]; 
+      if (!race) { // Check if track data exists
+        console.error('No race data found.');
+        document.getElementById('data-container2').innerHTML = 'No race data available.';
+        return;
+      }
+
+    // Create an h1 element to display the starting date and time in iso 8601 format
+    const startdate = document.createElement('h3');
+    startdate.textContent = `Lap start time: ${race.date_start}`;
+
+    // Create an h1 element to display the driver number
+    const drivernum = document.createElement('h1');
+    drivernum.textContent = `Racing Number: ${race.driver_number}`;
+
+    // Create h1 element to display laptime
+    const laptime = document.createElement('h1');
+    laptime.textContent = `Lap time: ${race.lap_duration}`;
+
+    // Create h3 element to display lap number
+    const lapnumber = document.createElement('h1');
+    lapnumber.textContent = `Lap number: ${race.lap_number}`;
+
+    // Create h3 element to display sector 1 time
+    const s1 = document.createElement('h3');
+    s1.textContent = `Sector 1 time: ${race.duration_sector_1}`;
+    
+    // Create h3 element to display sector 2 time
+    const s2 = document.createElement('h3');
+    s2.textContent = `Sector 2 time: ${race.duration_sector_2}`;
+
+    // Create h3 element to display sector 3 time
+    const s3 = document.createElement('h3');
+    s3.textContent = `Sector 3 time: ${race.duration_sector_3}`;
+
+    // Create h3 element to display speedtrap 
+    const speedtrap = document.createElement('h3');
+    speedtrap.textContent = `Speed trap: ${race.st_speed} km/h`;
+
+    // Create h3 element to display out lap
+    const outlap = document.createElement('h3');
+
+    // display mesg if true
+    if (race.is_pit_out_lap) {
+    outlap.textContent = `This lap is an out-lap`;
+    }
+
+    else {
+      outlap.textContent = `This lap is not an out-lap`;
+    }
+
+
+    // Clear the data container and add the new h1 element
+    const container2 = document.getElementById('data-container2');
+
+    // Clear any existing content
+    container2.innerHTML = ''; 
+
+    container2.appendChild(drivernum);
+    container2.appendChild(lapnumber);
+    container2.appendChild(laptime);
+    container2.appendChild(s1);
+    container2.appendChild(s2);
+    container2.appendChild(s3);
+    container2.appendChild(speedtrap);
+    container2.appendChild(startdate);
+    container2.appendChild(outlap);
+    
+    
+
+    })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container2').innerHTML = 'An error occurred while fetching data.';
+  });
+
+}
+
 
 
 // Circuit section

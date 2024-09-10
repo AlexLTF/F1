@@ -73,10 +73,6 @@ body {
   padding: 2%;
 }
 
-.racingTelemetryInput {
-  padding: 2%;
-}
-
 .racingTelemetryHeader h1{
   background-color:rgb(232, 4, 4);
   color: white;
@@ -88,5 +84,36 @@ body {
 
 #data-container3 {
   padding: 2%;
- 
 }
+
+.circuitInfoHeader h1{
+  background-color:rgb(232, 4, 4);
+  color: white;
+  margin-top: 2%;
+  margin-left: 0;
+  padding: 0.6%;
+  padding-left: 2%;
+}
+
+.circuitInfoHeader h2{
+  padding: 2%;
+}
+
+.circuitInput{
+  padding-left: 2%;
+}
+
+#data-container2 h1 {
+  background-color:rgb(232, 4, 4);
+  color: white;
+  margin-left: 0;
+  border: 0%;
+  padding: 1%;
+  padding-left: 2%;
+}
+
+#data-container2 h3 {
+  margin-left: 2%;
+  margin-top: 2%;
+}
+

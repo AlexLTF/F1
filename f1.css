@@ -103,17 +103,30 @@ body {
   padding-left: 2%;
 }
 
+#data-container3 h1{
+  background-color:rgb(232, 4, 4);
+  color: white;
+  margin: 0;
+  border: 0%;
+  padding: 1%;
+  padding-left: 2%;
+}
+
 #data-container2 h1 {
   background-color:rgb(232, 4, 4);
   color: white;
+  margin-top: 2%;
   margin-left: 0;
-  border: 0%;
-  padding: 1%;
+  padding: 0.6%;
   padding-left: 2%;
 }
 
 #data-container2 h3 {
   margin-left: 2%;
   margin-top: 2%;
+}
+
+ #telemetryNumber{
+ margin-left: 2%;
 }
 

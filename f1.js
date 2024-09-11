@@ -408,4 +408,74 @@ function fetchStintData(Stint) {
 
 }
 
+// Race control section
+
+const fetchButton5 = document.getElementById('fetchButton5');
+if (fetchButton5) {
+  fetchButton5.addEventListener('click', saveControlInput);
+}
+
+
+function saveControlInput() {
+
+  const control = document.getElementById('control').value;
+
+  console.log('User entered race control:', control)
+
+  fetchControlData(control);
+
+}
+
+function fetchControlData(control) {
+  const url = `https://api.openf1.org/v1/race_control?&driver_number=${control}`;
+  console.log('Fetching data from:', url); // Log the URL being called
+
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('Network response was not ok');
+      }
+      return response.json(); // if ok
+    })
+
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+
+      if (data.length === 0) { // Handle empty data
+        console.error('No circuit information found for the control:', control);
+        document.getElementById('data-container5').innerHTML = 'No race control information found.';
+        return;
+      }
+
+    // Clear the data container
+    const container5 = document.getElementById('data-container5');
+    container5.innerHTML = ''; // Clear any existing content
+
+    // Loop through the array and display each stint
+    data.forEach(raceControl => {
+
+      // Create elements for each stint's data
+      const raceControlElement = document.createElement('div');
+      raceControlElement.innerHTML = `
+        <h1>Lap: ${raceControl.lap_number}</h1>
+        <h3>Flag: ${raceControl.flag}</h3>
+        <h3>Event: ${raceControl.message}</h3>
+        <hr> <!-- Add a horizontal line between stints -->
+      `;
+
+      // Append each stint's data to the container.
+      container5.appendChild(raceControlElement);
+    });
+     
+    })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container5').innerHTML = 'An error occurred while fetching data.';
+  });
+
+}
+
+
 });

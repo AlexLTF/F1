@@ -343,7 +343,7 @@ function fetchStintData(Stint) {
         <hr> <!-- Add a horizontal line between stints -->
       `;
 
-      // Append each stint's data to the container
+      // Append each stint's data to the container.
       container4.appendChild(stintElement);
     });
      

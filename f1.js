@@ -211,6 +211,7 @@ function saveCountryInput() {
   console.log('User entered country:', Country)
 
   fetchCountryData(Country);
+  fetchWeekendData(Country);
 
 }
 
@@ -271,10 +272,62 @@ function fetchCountryData(Country) {
 
     container3.appendChild(officialname);
     container3.appendChild(countryname);
-    container3.appendChild(location);
-    container3.appendChild(datestart);
-    container3.appendChild(gmt);
+  
+    })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container3').innerHTML = 'An error occurred while fetching data.';
+  });
 
+}
+
+// Weekend section
+
+function fetchWeekendData(Country) {
+  const url = `https://api.openf1.org/v1/sessions?country_name=${Country}&year=2024`;
+  console.log('Fetching data from:', url); // Log the URL being called
+
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('Network response was not ok');
+      }
+      return response.json(); // if ok
+    })
+
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+
+      if (data.length === 0) { // Handle empty data
+        console.error('No GP information found for the weekend:', Country);
+        document.getElementById('data-container3').innerHTML = 'No circuit information found.';
+        return;
+      }
+
+    const container3 = document.getElementById('data-container3');
+   
+    // Loop through the array and display each stint
+    data.forEach(track => {
+
+      // Create elements for each stint's data
+      const stintElement2 = document.createElement('div');
+      stintElement2.innerHTML = `
+        <h1>Session: ${track.session_name}</h1>
+        <h3>Session type: ${track.session_type}</h3>
+        <h3>Date start: ${track.date_start}</h3>
+        <h3>Date end: ${track.date_end}</h3>
+        <h3>Location: ${track.location}</h3>
+        <h3>Country: ${track.country_name}</h3>
+        <h3>Year: ${track.year}</h3>
+        <hr> <!-- Add a horizontal line between stints -->
+      `;
+
+      // Append each stint's data to the container.
+      container3.appendChild(stintElement2);
+    });
+     
     })
   .catch(error => {
     console.error('Error fetching data:', error); // Log any errors

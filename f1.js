@@ -184,8 +184,6 @@ function fetchRacingData(telemetry, lapNumber) {
     container2.appendChild(startdate);
     container2.appendChild(outlap);
     
-    
-
     })
   .catch(error => {
     console.error('Error fetching data:', error); // Log any errors
@@ -194,15 +192,12 @@ function fetchRacingData(telemetry, lapNumber) {
 
 }
 
-
-
-// Circuit section
+// Circuit Section
 
 const fetchButton3 = document.getElementById('fetchButton3');
 if (fetchButton3) {
   fetchButton3.addEventListener('click', saveCountryInput);
 }
-
 
 function saveCountryInput() {
 
@@ -336,7 +331,6 @@ function fetchWeekendData(Country) {
 
 }
 
-
 // Stint section
 
 const fetchButton4 = document.getElementById('fetchButton4');
@@ -414,7 +408,6 @@ const fetchButton5 = document.getElementById('fetchButton5');
 if (fetchButton5) {
   fetchButton5.addEventListener('click', saveControlInput);
 }
-
 
 function saveControlInput() {
 

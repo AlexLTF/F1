@@ -470,5 +470,23 @@ function fetchControlData(control) {
 
 }
 
+// drop-down menu
+document.querySelectorAll('.section-title').forEach(title => {
+  title.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      const arrow = this.querySelector('.arrow');
+
+      // Toggle the display of the section content
+      if (content.style.display === 'none' || content.style.display === '') {
+          content.style.display = 'block';
+          arrow.classList.add('expanded');  // Rotate arrow
+      } else {
+          content.style.display = 'none';
+          arrow.classList.remove('expanded');  // Reset arrow
+      }
+  });
+});
+
+
 
 });

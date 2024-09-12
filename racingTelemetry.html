@@ -24,60 +24,74 @@
         </ul>
     </nav>
 </div>
-    
-    
+
+
 <div class="mainBanner">
-    <div id="currentGP">
 <br><img src="images/f1logo.png" 
 class="projectLogo" width="20%" height="20%" alt="f1 image">
-    </div>
-
 </div> 
 
 <!-- Lap Data -->
 <div class="racingTelemetryHeader">
-  
-    <h1>Single Lap Data</h1>
+<div class="section">
+    <h1 class="section-title">Single Lap Data <span class="arrow">v</span></h1>
+    <div class="section-content" style="display:none;">
     <h2>Enter the racing number of a driver and a lap number to get info about a specific lap at the most recent race:</h2>
-    
-</div>
-    
+
 <div class="racingTelemetryInput">
     <input type="text" id="telemetryNumber" style="width:12%" placeholder="Enter racing number"> 
     <input type="text" id="lap" style="width:7%" placeholder="Enter lap"> 
     <button id="fetchButton2">Get lap info</button><br> <br>
     <div id="data-container2"></div>
+            </div>
+        </div>
+    </div>
 </div>
+ 
 
  <!-- Stints -->   
+
  <div class="stintHeader">
-  
-    <h1>Stint Information</h1>
+ <div class="section"> 
+    <h1 class="section-title">Stint Information <span class="arrow">v</span></h1>
+    <div class="section-content" style="display:none;">
     <h2>Enter the racing number of a driver to get info about individual stints:</h2>
-        
- </div>
         
  <div class="stintInput">
     <input type="text" id="stint" style="width:12%" placeholder="Enter racing number"> 
     <button id="fetchButton4">Get data</button><br> <br>
     <div id="data-container4"></div>
- </div>
+</div>
+</div>
+</div>
+</div>
 
 
- <!-- Race control events -->   
+
+ <!-- Race control events -->  
  <div class="controlHeader">
-  
-    <h1>Race Control Events</h1>
+ <div class="section"> 
+    <h1 class="section-title">Race Control Events <span class="arrow">v</span></h1>
+    <div class="section-content" style="display:none;">
     <h2>Enter the racing number of a driver to get race control info:</h2>
         
- </div>
+
         
  <div class="controlInput">
     <input type="text" id="control" style="width:12%" placeholder="Enter racing number"> 
     <button id="fetchButton5">Get data</button><br> <br>
     <div id="data-container5"></div>
 
+</div>
+</div>
+</div>
+</div>
+ 
+ <!-- Background image  -->
+ <div class="background-wrapper">
+    <img class ="img2" src= "images/w1.jpg">
  </div>
+
 
 </body>
 </html>

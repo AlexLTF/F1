@@ -186,3 +186,24 @@ body {
   height: 100%;
   object-fit: cover; 
 }
+
+#fetchButton2, #fetchButton4, #fetchButton5 {
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border:none;
+  font-size: 75%;
+  padding: 1% 2.5%;
+  text-align: center;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#fetchButton2:hover, #fetchButton4:hover, #fetchButton5:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid red;
+  
+}

@@ -187,9 +187,8 @@ body {
   object-fit: cover; 
 }
 
-#fetchButton2, #fetchButton4, #fetchButton5 {
+#fetchButton, #fetchButton2, #fetchButton3, #fetchButton4, #fetchButton5 {
   background-color: red;
-  font-weight: bold;
   color: white;
   border-radius: 5px;
   border-style: solid;

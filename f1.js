@@ -10,16 +10,17 @@ const fetchButton = document.getElementById('fetchButton');
 
 function saveDriverInput() {
 
-  const num = document.getElementById('name').value;
+  const input = document.getElementById('name').value;
+  const formattedName = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 
-  console.log('User entered number:', num)
+  console.log('User entered number:', formattedName)
 
-  fetchDriverData(num);
+  fetchDriverData(formattedName);
 
 }
 
-function fetchDriverData(num) {
-  const url = `https://api.openf1.org/v1/drivers?last_name=${num}&session_key=9158`;
+function fetchDriverData(formattedName) {
+  const url = `https://api.openf1.org/v1/drivers?last_name=${formattedName}&session_key=9158`;
 
   fetch(url)
     .then(response => {

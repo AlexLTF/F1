@@ -204,15 +204,17 @@ function saveCountryInput() {
 
   const Country = document.getElementById('country1').value;
 
-  console.log('User entered country:', Country)
+  const countryName = Country.charAt(0).toUpperCase() + Country.slice(1).toLowerCase();
 
-  fetchCountryData(Country);
-  fetchWeekendData(Country);
+  console.log('User entered country:', countryName)
+
+  fetchCountryData(countryName);
+  fetchWeekendData(countryName);
 
 }
 
-function fetchCountryData(Country) {
-  const url = `https://api.openf1.org/v1/meetings?year=2024&country_name=${Country}`;
+function fetchCountryData(countryName) {
+  const url = `https://api.openf1.org/v1/meetings?year=2024&country_name=${countryName}`;
   console.log('Fetching data from:', url); // Log the URL being called
 
 
@@ -244,10 +246,6 @@ function fetchCountryData(Country) {
     const officialname = document.createElement('h1');
     officialname.textContent = track.meeting_official_name;
 
-    // Create an h1 element to display the country
-    const countryname = document.createElement('h1');
-    countryname.textContent = track.country_name;
-
     // Create h3 element to display circuit
     const location = document.createElement('h3');
     location.textContent = `Circuit location: ${track.location}`;
@@ -267,7 +265,7 @@ function fetchCountryData(Country) {
     container3.innerHTML = ''; 
 
     container3.appendChild(officialname);
-    container3.appendChild(countryname);
+   
   
     })
   .catch(error => {
@@ -279,8 +277,8 @@ function fetchCountryData(Country) {
 
 // Weekend section
 
-function fetchWeekendData(Country) {
-  const url = `https://api.openf1.org/v1/sessions?country_name=${Country}&year=2024`;
+function fetchWeekendData(countryName) {
+  const url = `https://api.openf1.org/v1/sessions?country_name=${countryName}&year=2024`;
   console.log('Fetching data from:', url); // Log the URL being called
 
 

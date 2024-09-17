@@ -102,7 +102,7 @@ body {
   padding: 2%;
 }
 
-.circuitInput{
+.circuitInput {
   padding-left: 2%;
 }
 
@@ -140,6 +140,14 @@ body {
 }
 
 .controlHeader h2{
+  margin-left: 2%;
+}
+
+.pitInput {
+  margin-left: 2%;
+}
+
+.pitHeader h2 {
   margin-left: 2%;
 }
 
@@ -187,7 +195,7 @@ body {
   object-fit: cover; 
 }
 
-#fetchButton, #fetchButton2, #fetchButton3, #fetchButton4, #fetchButton5 {
+#fetchButton, #fetchButton2, #fetchButton3, #fetchButton4, #fetchButton5, #fetchButton6 {
   background-color: red;
   color: white;
   border-radius: 5px;
@@ -200,7 +208,7 @@ body {
   cursor: pointer;
 }
 
-#fetchButton2:hover, #fetchButton4:hover, #fetchButton5:hover {
+#fetchButton2:hover, #fetchButton4:hover, #fetchButton5:hover, #fetchButton6:hover {
   background-color: white;
   color: black;
   border: 2px solid red;

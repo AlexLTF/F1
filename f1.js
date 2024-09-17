@@ -469,6 +469,71 @@ function fetchControlData(control) {
 
 }
 
+// Pit Stop section
+
+const fetchButton6 = document.getElementById('fetchButton6');
+  if (fetchButton6) {
+    fetchButton6.addEventListener('click', savePitInput);
+  }
+
+function savePitInput() {
+
+  const Pit = document.getElementById('pit').value;
+
+  console.log('User entered pit driver:', Pit)
+
+  fetchPitData(Pit);
+}
+
+function fetchPitData(Pit) {
+  const url = `https://api.openf1.org/v1/pit?session_key=latest&driver_number=${Pit}`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('Network response was not ok');
+      }
+      return response.json(); // if ok
+    })
+
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+
+      if (data.length === 0) { // Handle empty data
+        console.error('No circuit information found for driver pit:', Pit);
+        document.getElementById('data-container5').innerHTML = 'No race pit information found.';
+        return;
+      }
+
+    // Clear the data container
+    const container6 = document.getElementById('data-container6');
+    container6.innerHTML = ''; // Clear any existing content
+
+    // Loop through the array and display each stint
+    data.forEach(PitStop => {
+
+      // Create elements for each stint's data
+      const pitStopElement = document.createElement('div');
+      pitStopElement.innerHTML = `
+        <h3>Lap ${PitStop.lap_number}</h1>
+        <h1>Pit duration ${PitStop.pit_duration}s</h1>
+        <hr> <!-- Add a horizontal line between pits -->
+      `;
+
+      // Append each stint's data to the container.
+      container6.appendChild(pitStopElement);
+    });
+     
+    })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container6').innerHTML = 'An error occurred while fetching data.';
+  });
+
+}
+
+
 // drop-down menu
 document.querySelectorAll('.section-title').forEach(title => {
   title.addEventListener('click', function() {

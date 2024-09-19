@@ -600,7 +600,7 @@ function fetchWeatherData(dateInput) {
       // Display the averages
       const weatherElement = document.createElement('div');
       weatherElement.innerHTML = `
-        <h1>Weather Data for ${dateInput}</h1>
+        <h1>Average Weather Data for ${dateInput}</h1>
         <h3>Humidity: ${averageHumidity.toFixed(2)}%</h3>
         <h3>Wind Speed: ${averageWindSpeed.toFixed(2)} m/s</h3>
         <h3>Air Temperature ${averageAirTemp.toFixed(2)}°C</h3>

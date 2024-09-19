@@ -530,8 +530,96 @@ function fetchPitData(Pit) {
     console.error('Error fetching data:', error); // Log any errors
       document.getElementById('data-container6').innerHTML = 'An error occurred while fetching data.';
   });
-
 }
+
+// Weather info section
+
+const fetchButton7 = document.getElementById('fetchButton7');
+if (fetchButton7) {
+  fetchButton7.addEventListener('click', saveWeatherInput);
+}
+
+function saveWeatherInput() {
+  const dateInput = document.getElementById('date').value;
+
+  console.log('User entered date:', dateInput);
+
+  fetchWeatherData(dateInput);
+}
+
+function fetchWeatherData(dateInput) {
+  const url = `https://api.openf1.org/v1/weather?meeting_key=latest&date=${dateInput}`; 
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json(); // Parse the response as JSON
+    })
+    .then(data => {
+      console.log('Data received from API:', data); // Log the full response data for debugging
+
+      // Filter the data by the provided date
+      const filteredData = data.filter(item => item.date.startsWith(dateInput));
+
+      if (filteredData.length === 0) { // Handle empty data
+        console.error('No weather information found for the selected date:', dateInput);
+        document.getElementById('data-container7').innerHTML = 'No weather information found for the selected date.';
+        return;
+      }
+
+      // Initialize variables to store the sum of each attribute
+      let totalHumidity = 0;
+      let totalWindSpeed = 0;
+      let totalTrackTemperature = 0;
+      let totalAirTemp = 0;
+      let totalPressure = 0;
+
+      // Loop through the filtered data and sum up the attributes
+      filteredData.forEach(item => {
+        totalHumidity += item.humidity;
+        totalWindSpeed += item.wind_speed;
+        totalTrackTemperature += item.track_temperature;
+        totalAirTemp += item.air_temperature;
+        totalPressure += item.pressure;
+      });
+
+
+      // Calculate the averages
+      const averageHumidity = totalHumidity / filteredData.length;
+      const averageWindSpeed = totalWindSpeed / filteredData.length;
+      const averageTrackTemperature = totalTrackTemperature / filteredData.length;
+      const averageAirTemp = totalAirTemp / filteredData.length;
+      const averagePressure = totalPressure / filteredData.length;
+
+      // Clear the data container
+      const container7 = document.getElementById('data-container7');
+      container7.innerHTML = ''; // Clear any existing content
+
+      // Display the averages
+      const weatherElement = document.createElement('div');
+      weatherElement.innerHTML = `
+        <h1>Weather Data for ${dateInput}</h1>
+        <h3>Humidity: ${averageHumidity.toFixed(2)}%</h3>
+        <h3>Wind Speed: ${averageWindSpeed.toFixed(2)} m/s</h3>
+        <h3>Air Temperature ${averageAirTemp.toFixed(2)}°C</h3>
+        <h3>Track Temperature: ${averageTrackTemperature.toFixed(2)}°C</h3>
+        <h3>Pressure ${averagePressure.toFixed(2)} mbar</h3>
+       
+      `;
+
+      // Append the weather data to the container
+      container7.appendChild(weatherElement);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error); // Log any errors
+      document.getElementById('data-container7').innerHTML = 'An error occurred while fetching data.';
+    });
+}
+
+
+
 
 
 // drop-down menu
